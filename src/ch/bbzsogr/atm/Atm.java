@@ -2,9 +2,13 @@ package ch.bbzsogr.atm;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 
 /**
@@ -14,48 +18,35 @@ import javax.swing.JComboBox;
  */
 public class Atm
 {
+
     public static final String CREDITCARD_FILES_PATH = "../../../../data/creditcards/";
-    
-    public static void main ( String[] args ) throws IOException
+
+    public void initComobobox ( JComboBox kartenDrop )
     {
-        Atm bancomat = new Atm();
-        bancomat.show( true );
+        File[] files = new File( CREDITCARD_FILES_PATH ).listFiles();
 
-    }
-
-    public void listDir ( JComboBox kartenDrop ) throws FileNotFoundException, IOException
-    {
-        File f = new File( CREDITCARD_FILES_PATH );
-        File[] files = f.listFiles();
-
-        if ( files != null )
-        { // Erforderliche Berechtigungen etc. sind vorhanden
-            for ( int i = 0; i < files.length; i++ )
+        if ( files == null )
+        {
+            Logger.getLogger( Atm.class.getName() ).log( Level.SEVERE, null, "File not found." );
+        }
+        else
+        {
+            for ( File file : files )
             {
-                FileReader fr = new FileReader( files[i].getAbsolutePath() );
-                BufferedReader br = new BufferedReader( fr );
+                try ( InputStream inputStream = new FileInputStream( CREDITCARD_FILES_PATH ) )
+                {
+                    FileReader fr = new FileReader( file.getAbsolutePath() );
+                    BufferedReader br = new BufferedReader( fr );
 
-                String zeile1 = br.readLine();
-                System.out.println( zeile1 );
+                    String zeile1 = br.readLine();
+                    System.out.println( zeile1 );
+                }
+                catch ( IOException e )
+                {
+                    Logger.getLogger( Atm.class.getName() ).log( Level.SEVERE, null, e );
+                }
             }
         }
-        else
-        {
-            System.out.println( "Dateien können nicht gelesen werden." );
-        }
-    }
 
-    public void show ( boolean visible )
-    {
-        if ( visible )
-        {
-            CardSlot kartenschliz = new CardSlot();
-            kartenschliz.setVisible( visible );
-        }
-        else
-        {
-            System.out.println( "GUI Visible is false. Please set it to true." );
-        }
     }
-
 }
