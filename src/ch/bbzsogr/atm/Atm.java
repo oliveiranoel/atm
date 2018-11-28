@@ -49,7 +49,7 @@ public class Atm
     {
         if ( visible )
         {
-            CardSlot kartenschliz = new CardSlot();
+            AtmGUI kartenschliz = new AtmGUI();
             kartenschliz.setVisible( visible );
         }
         else
