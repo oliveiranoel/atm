@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bancomat;
 
 import java.io.IOException;
@@ -10,8 +5,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author noel.oliveira
+ * @author noel.oliveira, dominik.suter
+ * @version 1.0
+ * @since 28.11.18
  */
 public class Kartenschliz extends javax.swing.JFrame {
 
