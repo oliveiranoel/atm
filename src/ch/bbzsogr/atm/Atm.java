@@ -14,7 +14,8 @@ import javax.swing.JComboBox;
  */
 public class Atm
 {
-
+    public static final String CREDITCARD_FILES_PATH = "../../../../data/creditcards/";
+    
     public static void main ( String[] args ) throws IOException
     {
         Atm bancomat = new Atm();
@@ -24,7 +25,7 @@ public class Atm
 
     public void listDir ( JComboBox kartenDrop ) throws FileNotFoundException, IOException
     {
-        File f = new File( "P:/3_Lehrjahr/M226/UML/bancomat/dateien/karten" );
+        File f = new File( CREDITCARD_FILES_PATH );
         File[] files = f.listFiles();
 
         if ( files != null )
