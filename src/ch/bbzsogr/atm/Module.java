@@ -40,7 +40,7 @@ public class Module
         {
             public void run ()
             {
-                new CardSlot().setVisible( true );
+                new AtmGUI().setVisible( true );
             }
         } );
     }
